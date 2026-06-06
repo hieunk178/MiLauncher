@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MiLauncher</string>
+    
+    <!-- Categories -->
+    <string name="header_hdmi">Nguồn Phát</string>
+    <string name="header_apps">Ứng dụng Việt Nam</string>
+    <string name="header_system">Hệ thống</string>
+    
+    <!-- Items -->
+    <string name="item_hdmi_1">HDMI 1</string>
+    <string name="item_hdmi_2">HDMI 2</string>
+    <string name="item_hdmi_3">HDMI 3</string>
+    
+    <string name="item_settings">Cài đặt TV</string>
+    <string name="item_ota_update">Cập nhật MiLauncher</string>
+    
+    <!-- Messages -->
+    <string name="msg_app_not_installed">Ứng dụng chưa được cài đặt!</string>
+    <string name="msg_ota_checking">Đang kiểm tra cập nhật...</string>
+    <string name="msg_ota_downloading">Đang tải bản cập nhật mới...</string>
+    <string name="msg_ota_error">Lỗi khi tải bản cập nhật!</string>
+</resources>

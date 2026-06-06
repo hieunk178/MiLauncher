@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B3000000"> <!-- Dim background -->
+
+    <!-- Floating Side Panel -->
+    <ViewFlipper
+        android:id="@+id/settings_flipper"
+        android:layout_width="450dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_projectivy_panel"
+        android:padding="24dp">
+
+        <!-- Screen 0: Main Menu -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MiLauncher"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="32dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hiển thị"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp" />
+
+            <Button
+                android:id="@+id/btn_menu_categories"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Cấu hình danh mục"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="24dp"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="16dp"
+                android:textAllCaps="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hệ thống"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp" />
+
+            <Button
+                android:id="@+id/btn_ota"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Cập nhật OTA"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="16dp"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Screen 1: Categories -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Danh mục"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="32dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tuỳ chỉnh hiển thị trên màn hình chính"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp" />
+
+            <Button
+                android:id="@+id/btn_cat_hdmi"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Nguồn HDMI"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_cat_apps"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Ứng dụng"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Screen 2: Specific Category Config -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_config_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cấu hình: Nguồn HDMI"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="32dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tuỳ chọn cơ bản"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp" />
+
+            <Button
+                android:id="@+id/btn_toggle_visibility"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Trạng thái: ĐANG HIỆN"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="24dp"
+                android:textAllCaps="false" />
+                
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Giao diện &amp; Bố cục"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp" />
+
+            <Button
+                android:id="@+id/btn_cat_layout_type"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Kiểu Hiển Thị: DẠNG TRƯỢT (ROW)"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_cat_card_size"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Kích Thước Thẻ: VỪA"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_cat_columns"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Số mục hiển thị: TỰ ĐỘNG"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="16dp"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </ViewFlipper>
+</FrameLayout>

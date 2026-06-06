@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MiLauncher" parent="Theme.Leanback">
+        <item name="android:colorPrimary">@color/background_gradient_start</item>
+        <item name="android:windowBackground">@color/background_gradient_start</item>
+        <!-- Customizing Leanback headers -->
+        <item name="headersVerticalGridStyle">@style/CustomHeadersGridStyle</item>
+    </style>
+
+    <style name="CustomHeadersGridStyle" parent="Widget.Leanback.Headers.VerticalGridView">
+        <item name="android:background">@color/fastlane_background</item>
+    </style>
+
+    <style name="Theme.MiLauncher.Transparent" parent="Theme.Leanback">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

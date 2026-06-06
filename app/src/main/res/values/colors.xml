@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Background colors -->
+    <color name="background_gradient_start">#0B0D17</color>
+    <color name="background_gradient_end">#1A1225</color>
+    
+    <!-- UI Elements -->
+    <color name="fastlane_background">#80000000</color> <!-- Translucent black -->
+    <color name="search_orb_color">#5E35B1</color> <!-- Modern purple -->
+    
+    <!-- Cards -->
+    <color name="card_background">#1E1E2A</color>
+    <color name="card_background_selected">#ffffff</color>
+    <color name="card_text_unselected">#B3B3B3</color>
+    <color name="card_text_selected">#000000</color>
+</resources>
