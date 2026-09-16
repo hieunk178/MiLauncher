@@ -3,6 +3,7 @@
 
     <!-- Permissions for OTA update -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     
     <!-- Permissions to read apps installed on device to launch them -->
@@ -11,6 +12,12 @@
     <!-- Permissions for Location (Weather) -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Permissions for TV Input / HDMI switching (Xiaomi TV) -->
+    <uses-permission android:name="android.permission.READ_TV_LISTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_HDMI_CEC_ACTIVE_SOURCE" />
+    <uses-permission android:name="android.permission.TV_INPUT_HARDWARE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -56,7 +63,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

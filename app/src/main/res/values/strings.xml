@@ -20,4 +20,22 @@
     <string name="msg_ota_checking">Đang kiểm tra cập nhật...</string>
     <string name="msg_ota_downloading">Đang tải bản cập nhật mới...</string>
     <string name="msg_ota_error">Lỗi khi tải bản cập nhật!</string>
+
+    <!-- Search -->
+    <string name="search_hint">Tìm kiếm ứng dụng...</string>
+
+    <!-- Wallpaper categories -->
+    <string name="wallpaper_nature">Thiên nhiên</string>
+    <string name="wallpaper_city">Thành phố</string>
+    <string name="wallpaper_space">Vũ trụ</string>
+    <string name="wallpaper_abstract">Trừu tượng</string>
+    <string name="wallpaper_architecture">Kiến trúc</string>
+
+    <!-- Sidebar labels -->
+    <string name="sidebar_hdmi">HDMI</string>
+    <string name="sidebar_apps">TV App</string>
+    <string name="sidebar_phone">Mobile</string>
+    <string name="sidebar_search">Tìm</string>
+    <string name="sidebar_store">Store</string>
+    <string name="sidebar_settings">Cài đặt</string>
 </resources>

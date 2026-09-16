@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.ViewFlipper
+import android.widget.PopupMenu
+import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
+import com.milauncher.util.AppLauncher
 import com.milauncher.util.OtaUpdater
 import com.milauncher.util.SettingsManager
 import kotlinx.coroutines.launch
+import android.content.Intent
 
 class SettingsActivity : FragmentActivity() {
 
@@ -17,6 +21,10 @@ class SettingsActivity : FragmentActivity() {
     
     // Screen 0
     private lateinit var btnMenuCategories: Button
+    private lateinit var btnFocusAnimation: Button
+    private lateinit var btnOwnerName: Button
+    private lateinit var btnDeviceSettings: Button
+    private lateinit var btnAppStore: Button
     private lateinit var btnOta: Button
     
     // Screen 1
@@ -42,6 +50,10 @@ class SettingsActivity : FragmentActivity() {
 
         // Screen 0
         btnMenuCategories = findViewById(R.id.btn_menu_categories)
+        btnFocusAnimation = findViewById(R.id.btn_focus_animation)
+        btnOwnerName = findViewById(R.id.btn_owner_name)
+        btnDeviceSettings = findViewById(R.id.btn_device_settings)
+        btnAppStore = findViewById(R.id.btn_app_store)
         btnOta = findViewById(R.id.btn_ota)
         
         // Screen 1
@@ -55,10 +67,56 @@ class SettingsActivity : FragmentActivity() {
         btnCatCardSize = findViewById(R.id.btn_cat_card_size)
         btnCatColumns = findViewById(R.id.btn_cat_columns)
 
+        // Update initial UI for screen 0
+        updateFocusAnimationBtnText()
+
         // --- SCREEN 0 LISTENERS ---
         btnMenuCategories.setOnClickListener {
             flipper.showNext() // Go to Screen 1
             btnCatHdmi.requestFocus()
+        }
+        
+        btnFocusAnimation.setOnClickListener { view ->
+            val options = listOf("MẶC ĐỊNH", "NHỊP TIM ĐẬP", "HƠI THỞ")
+            showDropdownMenu(view, options) { selectedIndex ->
+                settings.focusAnimationStyle = selectedIndex
+                updateFocusAnimationBtnText()
+            }
+        }
+        
+        btnOwnerName.text = "Tên chủ sở hữu: ${if (settings.ownerName.isEmpty()) "CHƯA ĐẶT" else settings.ownerName}"
+        btnOwnerName.setOnClickListener {
+            val input = android.widget.EditText(this).apply {
+                setText(settings.ownerName)
+                setSingleLine()
+            }
+            // Optional: add some padding to the EditText
+            val container = android.widget.FrameLayout(this)
+            val params = android.widget.FrameLayout.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(48, 24, 48, 24)
+            input.layoutParams = params
+            container.addView(input)
+
+            android.app.AlertDialog.Builder(this)
+                .setTitle("Nhập tên chủ sở hữu")
+                .setView(container)
+                .setPositiveButton("Lưu") { _, _ ->
+                    settings.ownerName = input.text.toString().trim()
+                    btnOwnerName.text = "Tên chủ sở hữu: ${if (settings.ownerName.isEmpty()) "CHƯA ĐẶT" else settings.ownerName}"
+                }
+                .setNegativeButton("Hủy", null)
+                .show()
+        }
+        
+        btnDeviceSettings.setOnClickListener {
+            AppLauncher.launchSettings(this)
+        }
+
+        btnAppStore.setOnClickListener {
+            AppLauncher.launchAppStore(this)
         }
         
         btnOta.setOnClickListener {
@@ -92,41 +150,70 @@ class SettingsActivity : FragmentActivity() {
             updateScreen2Ui()
         }
         
-        btnCatLayoutType.setOnClickListener {
-            if (currentConfigCategory == "HDMI") {
-                settings.hdmiLayout = if (settings.hdmiLayout == 0) 1 else 0
-            } else if (currentConfigCategory == "APPS") {
-                settings.appsLayout = if (settings.appsLayout == 0) 1 else 0
+        btnCatLayoutType.setOnClickListener { view ->
+            val options = listOf("DẠNG TRƯỢT (ROW)", "DẠNG LƯỚI (GRID)")
+            showDropdownMenu(view, options) { selectedIndex ->
+                if (currentConfigCategory == "HDMI") {
+                    settings.hdmiLayout = selectedIndex
+                } else if (currentConfigCategory == "APPS") {
+                    settings.appsLayout = selectedIndex
+                }
+                updateScreen2Ui()
             }
-            updateScreen2Ui()
         }
 
-        btnCatCardSize.setOnClickListener {
-            if (currentConfigCategory == "HDMI") {
-                settings.hdmiSize = (settings.hdmiSize + 1) % 3
-                // Reset columns when size changes
-                settings.hdmiColumns = 0
-            } else if (currentConfigCategory == "APPS") {
-                settings.appsSize = (settings.appsSize + 1) % 3
-                // Reset columns when size changes
-                settings.appsColumns = 0
+        btnCatCardSize.setOnClickListener { view ->
+            val options = listOf("NHỎ", "VỪA", "LỚN")
+            showDropdownMenu(view, options) { selectedIndex ->
+                if (currentConfigCategory == "HDMI") {
+                    settings.hdmiSize = selectedIndex
+                    // Reset columns when size changes
+                    settings.hdmiColumns = 0
+                } else if (currentConfigCategory == "APPS") {
+                    settings.appsSize = selectedIndex
+                    // Reset columns when size changes
+                    settings.appsColumns = 0
+                }
+                updateScreen2Ui()
             }
-            updateScreen2Ui()
         }
 
-        btnCatColumns.setOnClickListener {
+        btnCatColumns.setOnClickListener { view ->
             val maxColumns = getMaxColumnsForCurrentSize()
-            if (currentConfigCategory == "HDMI") {
-                var cols = settings.hdmiColumns + 1
-                if (cols > maxColumns) cols = 0
-                settings.hdmiColumns = cols
-            } else if (currentConfigCategory == "APPS") {
-                var cols = settings.appsColumns + 1
-                if (cols > maxColumns) cols = 0
-                settings.appsColumns = cols
+            val options = mutableListOf("TỰ ĐỘNG")
+            for (i in 1..maxColumns) {
+                options.add(i.toString())
             }
-            updateScreen2Ui()
+            showDropdownMenu(view, options) { selectedIndex ->
+                if (currentConfigCategory == "HDMI") {
+                    settings.hdmiColumns = selectedIndex
+                } else if (currentConfigCategory == "APPS") {
+                    settings.appsColumns = selectedIndex
+                }
+                updateScreen2Ui()
+            }
         }
+    }
+
+    private fun showDropdownMenu(anchor: View, options: List<String>, onItemSelected: (Int) -> Unit) {
+        val popup = PopupMenu(this, anchor)
+        options.forEachIndexed { index, option ->
+            popup.menu.add(0, index, index, option)
+        }
+        popup.setOnMenuItemClickListener { item ->
+            onItemSelected(item.itemId)
+            true
+        }
+        popup.show()
+    }
+
+    private fun updateFocusAnimationBtnText() {
+        val styleText = when (settings.focusAnimationStyle) {
+            1 -> "NHỊP TIM ĐẬP"
+            2 -> "HƠI THỞ"
+            else -> "MẶC ĐỊNH"
+        }
+        btnFocusAnimation.text = "Hiệu ứng Focus: $styleText"
     }
 
     private fun getMaxColumnsForCurrentSize(): Int {

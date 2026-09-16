@@ -1,31 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="140dp"
     android:layout_height="100dp"
     android:layout_margin="8dp"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/bg_glass_selector"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:focusable="true"
     android:clickable="true">
 
-    <ImageView
-        android:id="@+id/card_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_app_default" />
+    <!-- Glow shadow layer, CSS-like blur -->
+    <com.milauncher.util.GlowShadowView
+        android:id="@+id/card_glow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:alpha="0" />
 
-    <TextView
-        android:id="@+id/card_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:text="App Name" />
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/card_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/card_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_app_default" />
+
+        <TextView
+            android:id="@+id/card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="App Name" />
+    </LinearLayout>
+</FrameLayout>

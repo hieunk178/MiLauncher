@@ -3,88 +3,169 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_home_categories"
+    <!-- Wallpaper Layer -->
+    <ImageView
+        android:id="@+id/iv_wallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="120dp"
-        android:paddingBottom="48dp"
-        android:paddingStart="48dp"
-        android:paddingEnd="48dp"
-        android:nextFocusUp="@+id/btn_settings" />
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_wallpaper_gradient"/>
 
-    <!-- Custom Header Overlay -->
+    <!-- Dim overlay for readability -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55000000"/>
+
+    <!-- Main 2-Panel Layout -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="48dp"
-        android:orientation="vertical"
-        android:gravity="end">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-        <!-- Top row: Settings, Weather, Clock -->
+        <!-- === LEFT SIDEBAR === -->
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp">
+            android:id="@+id/sidebar_container"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/bg_sidebar"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:gravity="center_horizontal">
 
-            <ImageButton
-                android:id="@+id/btn_settings"
+            <!-- Logo / App Icon at top -->
+            <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_settings"
-                android:background="@drawable/bg_glass_selector"
-                android:padding="8dp"
-                android:layout_marginEnd="16dp"
-                android:focusable="true"
-                android:clickable="true" />
+                android:src="@drawable/ic_launcher"
+                android:scaleType="centerInside"
+                android:layout_marginBottom="24dp"/>
 
-            <TextView
-                android:id="@+id/tv_weather"
+            <!-- Sidebar Nav Items -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_sidebar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:overScrollMode="never"/>
+
+            <!-- Clock at bottom of sidebar -->
+            <TextClock
+                android:id="@+id/sidebar_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textColor="#CCFFFFFF"
+                android:textSize="13sp"
                 android:textStyle="bold"
-                android:shadowColor="#80000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4"
-                android:text="--°C"
-                android:layout_marginEnd="16dp"/>
+                android:format24Hour="HH:mm"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
 
             <TextClock
-                android:id="@+id/text_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:shadowColor="#80000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4"
-                android:format12Hour="hh:mm a"
-                android:format24Hour="HH:mm" />
+                android:textColor="#88FFFFFF"
+                android:textSize="10sp"
+                android:format24Hour="dd/MM"
+                android:gravity="center"/>
+
         </LinearLayout>
 
-        <!-- Name below Weather/Clock -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:shadowColor="#80000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="4"
-            android:layout_marginEnd="16dp"
-            android:text="Nguyễn Khắc Hiếu" />
+        <!-- === RIGHT CONTENT AREA === -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <!-- Main Content RecyclerView (Home rows, HDMI, Apps) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_categories"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingTop="80dp"
+                android:paddingBottom="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="32dp"
+                android:overScrollMode="never"/>
+
+            <!-- Search Overlay (shown when Search is selected on sidebar) -->
+            <FrameLayout
+                android:id="@+id/search_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"/>
+
+            <!-- Top-right info bar -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp">
+
+                <!-- Network Icon -->
+                <ImageView
+                    android:id="@+id/iv_network_status"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_wifi"
+                    android:focusable="true"
+                    android:background="@drawable/bg_glass_selector"
+                    android:padding="8dp" />
+
+                <!-- Settings Icon -->
+                <ImageView
+                    android:id="@+id/btn_header_settings"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_settings"
+                    android:focusable="true"
+                    android:background="@drawable/bg_glass_selector"
+                    android:padding="8dp" />
+
+                <!-- Weather and Greeting -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/tv_greeting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#DDFFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textAlignment="textEnd"
+                        android:shadowColor="#80000000"
+                        android:shadowDx="1" android:shadowDy="1" android:shadowRadius="4"
+                        android:text="Chào buổi tối ☽"/>
+
+                    <TextView
+                        android:id="@+id/tv_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#AAFFFFFF"
+                        android:textSize="14sp"
+                        android:shadowColor="#80000000"
+                        android:shadowDx="1" android:shadowDy="1" android:shadowRadius="4"
+                        android:text="--°C"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
     </LinearLayout>
+
 </FrameLayout>

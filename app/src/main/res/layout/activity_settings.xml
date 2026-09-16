@@ -49,6 +49,34 @@
                 android:textColor="#FFFFFF"
                 android:gravity="start|center_vertical"
                 android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="16dp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_focus_animation"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Hiệu ứng Focus: MẶC ĐỊNH"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="16dp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_owner_name"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Tên chủ sở hữu: "
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
                 android:layout_marginBottom="24dp"
                 android:drawableStart="@drawable/ic_settings"
                 android:drawablePadding="16dp"
@@ -62,6 +90,33 @@
                 android:textColor="#888888"
                 android:layout_marginBottom="8dp"
                 android:paddingStart="12dp" />
+
+            <Button
+                android:id="@+id/btn_device_settings"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Cài đặt TV Xiaomi"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFFFFF"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:drawableStart="@drawable/ic_settings"
+                android:drawablePadding="16dp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_app_store"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="🏪 Kho ứng dụng"
+                android:background="@drawable/bg_projectivy_btn"
+                android:textColor="#FFCC00"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:drawablePadding="16dp"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/btn_ota"

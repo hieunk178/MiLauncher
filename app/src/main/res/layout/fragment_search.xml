@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#CC000000">
+
+    <EditText
+        android:id="@+id/search_input"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Tim kiem ung dung..."
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#88FFFFFF"
+        android:textSize="18sp"
+        android:background="@drawable/bg_glass_card"
+        android:padding="12dp"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search_results"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"/>
+
+</LinearLayout>
